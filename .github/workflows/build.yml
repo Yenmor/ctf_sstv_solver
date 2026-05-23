@@ -4,6 +4,8 @@ on:
   push:
     tags:
       - 'v*'
+    paths:
+      - 'sstv_solver.py'
 
 jobs:
   build-linux:
@@ -80,20 +82,29 @@ jobs:
             ## CTF SSTV Solver ${{ github.ref_name }}
 
             Automated SSTV audio decoder for CTF challenges.
+            CTF 竞赛用 SSTV 音频自动解码器。
 
-            ### Downloads
-            - **Windows (amd64)**: `sstv_solver.exe`
-            - **Linux (amd64)**: `sstv_solver`
+            ### Downloads / 下载
 
-            ### Quick Usage
+            | Platform | File |
+            |----------|------|
+            | Windows (amd64) | `sstv_solver.exe` |
+            | Linux (amd64) | `sstv_solver` |
+
+            ### Quick Usage / 快速使用
+
             ```bash
-            # Windows
+            # Windows: drag WAV onto exe, or / 拖拽 WAV 到 exe 上，或
             sstv_solver.exe signal.wav
 
             # Linux
             ./sstv_solver signal.wav -o ./out/
+
+            # Batch: all WAVs in a directory / 批量处理目录下所有 WAV
+            sstv_solver ./captures/
             ```
 
             Supports 18 SSTV modes with auto-detection and multi-strategy fallback.
+            支持 18 种 SSTV 模式，自动检测 VIS 码，未知模式自动多策略回退。
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
